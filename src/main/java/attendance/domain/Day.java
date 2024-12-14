@@ -19,4 +19,8 @@ public enum Day {
         this.startTime = startTime;
         this.endTime = endTime;
     }
+
+    public String getDayName() {
+        return dayName;
+    }
 }
