@@ -2,7 +2,9 @@ package attendance.controller;
 
 import attendance.domain.AttendRecord;
 import attendance.domain.AttendRecords;
+import attendance.domain.Day;
 import attendance.domain.MenuCommand;
+import attendance.util.exception.InputException;
 import attendance.view.InputView;
 import attendance.view.OutputView;
 import camp.nextstep.edu.missionutils.DateTimes;
@@ -63,6 +65,11 @@ public class AttendanceController {
     }
 
     private void executeAttend() {
+        LocalDate now = LocalDate.now();
+        int nowDayValue = now.getDayOfWeek().getValue();
+        if(!Day.of(nowDayValue).isWorkDay()) {
+            throw new IllegalArgumentException(InputException.WRONG_TODAY.getTodayMessage());
+        }
         String crewName = inputView.getExistName(attendRecords);
         LocalTime time = inputView.getAttendanceTime();
         int date = DateTimes.now().getDayOfMonth();
