@@ -12,4 +12,8 @@ public class AttendRecord {
         this.dateTimes = dateTimes;
         this.day = null;
     }
+
+    public LocalDateTime getDateTime() {
+        return dateTimes;
+    }
 }

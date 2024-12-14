@@ -66,4 +66,8 @@ public class AttendRecords {
         }
         return timeValuesToInt;
     }
+
+    public List<AttendRecord> getRecords() {
+        return attendRecords;
+    }
 }

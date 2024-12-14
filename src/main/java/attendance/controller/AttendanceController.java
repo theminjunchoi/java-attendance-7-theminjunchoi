@@ -26,9 +26,12 @@ public class AttendanceController {
         LocalDate now = LocalDate.now();
         int dateOfMonth = now.getDayOfMonth();
         String dayOfWeek = now.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.KOREAN);
+
+        outputView.showRecord(attendRecords.getRecords());
+
         while(!MenuCommand.QUIT.equals(command)){
             command = inputView.readMenuCommand(dateOfMonth, dayOfWeek);
-            //executeCommand(command);
+            executeCommand(command);
         }
     }
 
