@@ -15,6 +15,8 @@ public class OutputView {
             String date = record.getDateTime().format(DateTimeFormatter.ofPattern(RECORD_DATE_FORMAT));
             String day = record.getDateTime().getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.KOREAN);
             String time = record.getDateTime().format(DateTimeFormatter.ofPattern(RECORD_TIME_FORMAT));
+            String crewName = record.getCrewName();
+            System.out.print(crewName + " ");
             System.out.printf(date + day + time);
         }
     }

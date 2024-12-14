@@ -74,4 +74,15 @@ public class AttendRecords {
     public void add(AttendRecord attendRecord) {
         attendRecords.add(attendRecord);
     }
+
+    public void findAndChangeAttendanceInfo(String crewName, int changeDate, LocalTime changeTime) {
+
+        for (AttendRecord record : attendRecords) {
+            if (record.isExist(crewName, changeDate)) {
+                LocalDate date = LocalDate.of(20224, 12, changeDate);
+                LocalDateTime dateTime = LocalDateTime.of(date, changeTime);
+                record.setDateTime(dateTime);
+            }
+        }
+    }
 }

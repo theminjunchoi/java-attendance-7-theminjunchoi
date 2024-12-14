@@ -1,11 +1,10 @@
 package attendance.view;
 
-import attendance.domain.Day;
+import attendance.domain.AttendRecords;
 import attendance.domain.MenuCommand;
 import attendance.util.TimeFormatMaker;
 import attendance.util.validation.InputValidator;
 import camp.nextstep.edu.missionutils.Console;
-import java.sql.Time;
 import java.time.LocalTime;
 
 public class InputView {
@@ -16,6 +15,7 @@ public class InputView {
             + "4. 제적 위험자 확인\n";
     private static final String GET_NAME = "닉네임을 입력해 주세요.";
     private static final String GET_ATTENDANCE_TIME = "등교 시간을 입력해 주세요.";
+    private static final String GET_DATE = "수정하려는 날짜(일)를 입력해 주세요.";
 
 
     public MenuCommand readMenuCommand(int date, String day) {
@@ -43,5 +43,17 @@ public class InputView {
         return time;
     }
 
+    public String getExistName(AttendRecords records) {
+        System.out.println(GET_NAME);
+        String nameInput = Console.readLine();
+        InputValidator.validateExistName(nameInput, records.getRecords());
+        return nameInput;
+    }
 
+    public int getChangeDate() {
+        System.out.println(GET_DATE);
+        String dateInput = Console.readLine();
+        InputValidator.validateDate(dateInput);
+        return Integer.parseInt(dateInput);
+    }
 }
