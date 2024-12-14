@@ -2,6 +2,7 @@ package attendance.controller;
 
 import attendance.domain.AttendRecord;
 import attendance.domain.AttendRecords;
+import attendance.domain.Crew;
 import attendance.domain.Day;
 import attendance.domain.MenuCommand;
 import attendance.util.exception.InputException;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
 import java.time.format.TextStyle;
+import java.util.List;
 import java.util.Locale;
 
 public class AttendanceController {
@@ -97,6 +99,7 @@ public class AttendanceController {
     }
 
     private void executeCheck() {
+        List<Crew> crews = attendRecords.organizeCrew();
 
     }
 

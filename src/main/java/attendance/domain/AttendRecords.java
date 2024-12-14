@@ -10,7 +10,9 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.accessibility.AccessibleText;
 
 public class AttendRecords {
@@ -129,17 +131,16 @@ public class AttendRecords {
         return null;
     }
 
-//    public void setStatus() {
-//        for (AttendRecord record : attendRecords) {
-//            if (record.isSafe()) {
-//
-//            }
-//            if (record.isLate()) {
-//
-//            }
-//            if (record.ifNot()) {
-//
-//            }
-//        }
-//    }
+    public List<Crew> organizeCrew() {
+        List<Crew> crews = new ArrayList<>();
+        List<String> crewNames = new ArrayList<>();
+        for (AttendRecord record : attendRecords) {
+            crewNames.add(record.getCrewName());
+        }
+        Set<String> uniqueCrewNames = new HashSet<>(crewNames);
+        for (String name : uniqueCrewNames) {
+            crews.add(new Crew(name));
+        }
+        return crews;
+    }
 }
