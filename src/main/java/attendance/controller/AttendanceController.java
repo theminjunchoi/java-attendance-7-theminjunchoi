@@ -65,11 +65,11 @@ public class AttendanceController {
     }
 
     private void executeAttend() {
-//        LocalDate now = LocalDate.now();
-//        int nowDayValue = now.getDayOfWeek().getValue();
-//        if(!Day.of(nowDayValue).isWorkDay()) {
-//            throw new IllegalArgumentException(InputException.WRONG_TODAY.getTodayMessage());
-//        }
+        LocalDate now = LocalDate.from(DateTimes.now());
+        int nowDayValue = now.getDayOfWeek().getValue();
+        if(!Day.of(nowDayValue).isWorkDay()) {
+            throw new IllegalArgumentException(InputException.WRONG_TODAY.getTodayMessage());
+        }
         String crewName = inputView.getExistName(attendRecords);
         LocalTime time = inputView.getAttendanceTime();
         int date = DateTimes.now().getDayOfMonth();
