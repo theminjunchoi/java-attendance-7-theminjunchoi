@@ -1,6 +1,5 @@
 package attendance.domain;
 
-import java.sql.Time;
 import java.time.LocalTime;
 import java.util.Arrays;
 
@@ -46,5 +45,13 @@ public enum Day {
             return true;
         }
         return false;
+    }
+
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
     }
 }

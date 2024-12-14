@@ -57,13 +57,14 @@ public class OutputView {
                 String dateInfo = record.getDateTime().format(DateTimeFormatter.ofPattern(RECORD_DATE_FORMAT));
                 String dayInfo = findDay.getDayName();
                 String timeInfo = record.getDateTime().format(DateTimeFormatter.ofPattern(RECORD_TIME_FORMAT));
-                System.out.printf(dateInfo + dayInfo + timeInfo + "\n");
+                String recordStatus = record.checkStatus();
+                System.out.printf(dateInfo + dayInfo + timeInfo + " (" + recordStatus + ")\n");
             }
             if (!attendRecords.isExist(crewName, findDate) && findDay.isWorkDay()) {
                 String dateInfo = LocalDate.of(2024, 12, i).format(DateTimeFormatter.ofPattern(RECORD_DATE_FORMAT));
                 String dayInfo = findDay.getDayName();
                 String timeInfo = " --:--";
-                System.out.printf(dateInfo + dayInfo + timeInfo + "\n");
+                System.out.printf(dateInfo + dayInfo + timeInfo + " (결석)\n");
             }
         }
     }

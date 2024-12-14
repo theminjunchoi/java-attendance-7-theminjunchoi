@@ -128,4 +128,18 @@ public class AttendRecords {
         }
         return null;
     }
+
+//    public void setStatus() {
+//        for (AttendRecord record : attendRecords) {
+//            if (record.isSafe()) {
+//
+//            }
+//            if (record.isLate()) {
+//
+//            }
+//            if (record.ifNot()) {
+//
+//            }
+//        }
+//    }
 }

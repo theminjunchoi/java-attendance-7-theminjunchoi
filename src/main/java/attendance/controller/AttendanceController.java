@@ -63,7 +63,6 @@ public class AttendanceController {
     }
 
     private void executeAttend() {
-//        String crewName = inputView.getNewName();
         String crewName = inputView.getExistName(attendRecords);
         LocalTime time = inputView.getAttendanceTime();
         int date = DateTimes.now().getDayOfMonth();
@@ -84,6 +83,7 @@ public class AttendanceController {
     }
 
     private void executeFind() {
+        //attendRecords.setStatus();
         String crewName = inputView.getExistName(attendRecords);
         // attendanceRecords에 day 찍어주고, 월화수목금만 보여주기
         attendRecords.addDayInfo();
