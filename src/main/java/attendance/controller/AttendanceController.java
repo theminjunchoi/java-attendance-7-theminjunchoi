@@ -65,11 +65,11 @@ public class AttendanceController {
     }
 
     private void executeAttend() {
-        LocalDate now = LocalDate.now();
-        int nowDayValue = now.getDayOfWeek().getValue();
-        if(!Day.of(nowDayValue).isWorkDay()) {
-            throw new IllegalArgumentException(InputException.WRONG_TODAY.getTodayMessage());
-        }
+//        LocalDate now = LocalDate.now();
+//        int nowDayValue = now.getDayOfWeek().getValue();
+//        if(!Day.of(nowDayValue).isWorkDay()) {
+//            throw new IllegalArgumentException(InputException.WRONG_TODAY.getTodayMessage());
+//        }
         String crewName = inputView.getExistName(attendRecords);
         LocalTime time = inputView.getAttendanceTime();
         int date = DateTimes.now().getDayOfMonth();
@@ -90,7 +90,6 @@ public class AttendanceController {
     }
 
     private void executeFind() {
-        //attendRecords.setStatus();
         String crewName = inputView.getExistName(attendRecords);
         // attendanceRecords에 day 찍어주고, 월화수목금만 보여주기
         attendRecords.addDayInfo();
