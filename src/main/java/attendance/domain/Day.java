@@ -2,6 +2,7 @@ package attendance.domain;
 
 import java.sql.Time;
 import java.time.LocalTime;
+import java.util.Arrays;
 
 public enum Day {
     MONDAY(1, "월요일", LocalTime.of(13, 00), LocalTime.of(18,00)),
@@ -10,7 +11,8 @@ public enum Day {
     THURSDAY(4, "목요일", LocalTime.of(10,00), LocalTime.of(18,00)),
     FRIDAY(5, "금요일", LocalTime.of(10,00), LocalTime.of(18,00)),
     SATURDAY(6, "토요일", null, null),
-    SUNDAY(7, "일요일", null, null);
+    SUNDAY(7, "일요일", null, null),
+    RESTDAY(0, "공휴일", null, null);
 
     private final int dayValue;
     private final String dayName;
@@ -24,7 +26,25 @@ public enum Day {
         this.endTime = endTime;
     }
 
+    public static Day of(int i) {
+        return Arrays.stream(values())
+                .filter(value -> value.getDayValue() == i)
+                .findFirst()
+                .orElse(null);
+    }
+
+    public int getDayValue() {
+        return dayValue;
+    }
+
     public String getDayName() {
         return dayName;
+    }
+
+    public boolean isWorkDay() {
+        if (dayValue < 6) {
+            return true;
+        }
+        return false;
     }
 }

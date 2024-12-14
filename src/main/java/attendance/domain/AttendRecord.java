@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 public class AttendRecord {
     private final String crewName;
     private LocalDateTime dateTimes;
-    private final Day day;
+    private Day day;
 
     public AttendRecord(String crewName, LocalDateTime dateTimes) {
         this.crewName = crewName;
@@ -31,5 +31,13 @@ public class AttendRecord {
 
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTimes = dateTime;
+    }
+
+    public void setDay(Day day) {
+        this.day = day;
+    }
+
+    public Day getDay() {
+        return day;
     }
 }

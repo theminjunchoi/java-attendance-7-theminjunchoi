@@ -36,7 +36,7 @@ public class AttendanceController {
         while(!MenuCommand.QUIT.equals(command)){
             command = inputView.readMenuCommand(dateOfMonth, dayOfWeek);
             executeCommand(command);
-            outputView.showRecord(attendRecords.getRecords());
+//            outputView.showRecord(attendRecords.getRecords());
         }
     }
 
@@ -84,7 +84,10 @@ public class AttendanceController {
     }
 
     private void executeFind() {
-
+        String crewName = inputView.getExistName(attendRecords);
+        // attendanceRecords에 day 찍어주고, 월화수목금만 보여주기
+        attendRecords.addDayInfo();
+        outputView.showOwnRecord(crewName, attendRecords);
     }
 
     private void executeCheck() {

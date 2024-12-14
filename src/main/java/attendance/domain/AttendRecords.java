@@ -4,11 +4,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import javax.accessibility.AccessibleText;
 
 public class AttendRecords {
     private static final Path path = Paths.get("src/main/resources/attendances.csv");
@@ -93,5 +96,36 @@ public class AttendRecords {
             }
         }
         return time;
+    }
+
+    public void addDayInfo() {
+        for (AttendRecord record : attendRecords) {
+            int dayValue = record.getDateTime().getDayOfWeek().getValue();
+            Day day = Arrays.stream(Day.values())
+                    .filter(value -> value.getDayValue() == dayValue)
+                    .findAny()
+                    .orElse(Day.RESTDAY);
+            record.setDay(day);
+        }
+    }
+
+    public boolean isExist(String crewName, LocalDate findDate) {
+        for (AttendRecord record : attendRecords) {
+            LocalDate localDate = record.getDateTime().toLocalDate();
+            if (record.getCrewName().equals(crewName) && localDate.equals(findDate)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public AttendRecord findRecord(String crewName, LocalDate findDate) {
+        for (AttendRecord record : attendRecords) {
+            LocalDate localDate = record.getDateTime().toLocalDate();
+            if (record.getCrewName().equals(crewName) && localDate.equals(findDate)) {
+                return record;
+            }
+        }
+        return null;
     }
 }
