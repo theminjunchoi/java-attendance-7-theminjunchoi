@@ -1,20 +1,24 @@
 package attendance.domain;
 
 import java.sql.Time;
+import java.time.LocalTime;
 
 public enum Day {
-    MONDAY("월요일", new Time(13,00,00), new Time(18,00,00)),
-    TUESDAY("화요일", new Time(10,00,00), new Time(18,00,00)),
-    WEDNESDAY("수요일", new Time(10,00,00), new Time(18,00,00)),
-    THURSDAY("목요일", new Time(10,00,00), new Time(18,00,00)),
-    FRIDAY("금요일", new Time(10,00,00), new Time(18,00,00)),
-    RESTDAY("쉬는날", null, null);
+    MONDAY(1, "월요일", LocalTime.of(13, 00), LocalTime.of(18,00)),
+    TUESDAY(2, "화요일", LocalTime.of(10,00), LocalTime.of(18,00)),
+    WEDNESDAY(3, "수요일", LocalTime.of(10,00), LocalTime.of(18,00)),
+    THURSDAY(4, "목요일", LocalTime.of(10,00), LocalTime.of(18,00)),
+    FRIDAY(5, "금요일", LocalTime.of(10,00), LocalTime.of(18,00)),
+    SATURDAY(6, "토요일", null, null),
+    SUNDAY(7, "일요일", null, null);
 
+    private final int dayValue;
     private final String dayName;
-    private final Time startTime;
-    private final Time endTime;
+    private final LocalTime startTime;
+    private final LocalTime endTime;
 
-    Day(String dayName, Time startTime, Time endTime) {
+    Day(int dayValue, String dayName, LocalTime startTime, LocalTime endTime) {
+        this.dayValue = dayValue;
         this.dayName = dayName;
         this.startTime = startTime;
         this.endTime = endTime;
