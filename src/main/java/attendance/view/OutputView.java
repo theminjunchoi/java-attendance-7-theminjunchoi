@@ -2,6 +2,7 @@ package attendance.view;
 
 import attendance.domain.AttendRecord;
 import attendance.domain.AttendRecords;
+import attendance.domain.Crew;
 import attendance.domain.Day;
 import camp.nextstep.edu.missionutils.DateTimes;
 import java.time.DayOfWeek;
@@ -16,7 +17,7 @@ public class OutputView {
     private static final String RECORD_DATE_FORMAT = "MM월 dd일 ";
     private static final String RECORD_TIME_FORMAT = " HH:mm";
     private static final String OWN_RECORD_FORMAT = "이번 달 %s의 출석 기록입니다.\n";
-
+    private static final String CREW_RESULT = "- %s: 결석 %d회, 지각 %d회 %s\n";
 
     public void showRecord(List<AttendRecord> records) {
         for (AttendRecord record : records) {
@@ -67,5 +68,11 @@ public class OutputView {
                 System.out.printf(dateInfo + dayInfo + timeInfo + " (결석)\n");
             }
         }
+    }
+
+    public void printCrewResult(List<Crew> crews) {
+//        for (Crew crew : crews) {
+//            System.out.printf(crew.getNotCount(), crew.getLateCount());
+//        }
     }
 }

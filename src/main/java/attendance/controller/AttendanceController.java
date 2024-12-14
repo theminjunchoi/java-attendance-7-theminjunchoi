@@ -106,6 +106,7 @@ public class AttendanceController {
                 handleCrewInfo(crew, i);
             }
         }
+        outputView.printCrewResult(crews);
     }
 
     private void handleCrewInfo(Crew crew, int date) {
@@ -120,6 +121,9 @@ public class AttendanceController {
             if (recordStatus.equals("지각")) {
                 crew.setNotCount(crew.getNotCount() + 1);
             }
+        }
+        if (!attendRecords.isExist(crew.getName(), findDate)) {
+            crew.setNotCount(crew.getNotCount() + 1);
         }
     }
 
