@@ -1,37 +1,42 @@
 package attendance.controller;
 
+import attendance.domain.AttendRecord;
 import attendance.domain.AttendRecords;
 import attendance.domain.MenuCommand;
 import attendance.view.InputView;
 import attendance.view.OutputView;
+import camp.nextstep.edu.missionutils.DateTimes;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Month;
 import java.time.format.TextStyle;
 import java.util.Locale;
 
 public class AttendanceController {
     private final InputView inputView;
     private final OutputView outputView;
+    private final AttendRecords attendRecords;
 
     public AttendanceController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
+        this.attendRecords = new AttendRecords();
     }
 
     public void run() {
         MenuCommand command = null;
 
-        AttendRecords attendRecords = new AttendRecords();
         attendRecords.createRecords();
 
         LocalDate now = LocalDate.now();
         int dateOfMonth = now.getDayOfMonth();
         String dayOfWeek = now.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.KOREAN);
 
-        outputView.showRecord(attendRecords.getRecords());
-
         while(!MenuCommand.QUIT.equals(command)){
             command = inputView.readMenuCommand(dateOfMonth, dayOfWeek);
             executeCommand(command);
+            outputView.showRecord(attendRecords.getRecords());
         }
     }
 
@@ -58,7 +63,12 @@ public class AttendanceController {
     }
 
     private void executeAttend() {
-
+        String crewName = inputView.getNewName();
+        LocalTime time = inputView.getAttendanceTime();
+        int date = DateTimes.now().getDayOfMonth();
+        LocalDate todayDate = LocalDate.of(2024, 12, date);
+        LocalDateTime today = LocalDateTime.of(todayDate, time);
+        attendRecords.add(new AttendRecord(crewName, today));
     }
 
     private void executeAdjust() {
@@ -72,4 +82,6 @@ public class AttendanceController {
     private void executeCheck() {
 
     }
+
+
 }

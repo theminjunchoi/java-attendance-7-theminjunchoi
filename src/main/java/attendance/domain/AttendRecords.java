@@ -70,4 +70,8 @@ public class AttendRecords {
     public List<AttendRecord> getRecords() {
         return attendRecords;
     }
+
+    public void add(AttendRecord attendRecord) {
+        attendRecords.add(attendRecord);
+    }
 }
