@@ -63,12 +63,15 @@ public class AttendanceController {
     }
 
     private void executeAttend() {
-        String crewName = inputView.getNewName();
+//        String crewName = inputView.getNewName();
+        String crewName = inputView.getExistName(attendRecords);
         LocalTime time = inputView.getAttendanceTime();
         int date = DateTimes.now().getDayOfMonth();
         LocalDate todayDate = LocalDate.of(2024, 12, date);
         LocalDateTime today = LocalDateTime.of(todayDate, time);
-        attendRecords.add(new AttendRecord(crewName, today));
+        AttendRecord record = new AttendRecord(crewName, today);
+        attendRecords.add(record);
+        outputView.printAttendanceRecord(record);
     }
 
     private void executeAdjust() {
