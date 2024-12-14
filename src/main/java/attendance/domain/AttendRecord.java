@@ -52,7 +52,7 @@ public class AttendRecord {
             return "지각";
         }
         if (dateTimes.toLocalTime().isAfter(day.getStartTime().plusMinutes(5))) {
-            return "출석";
+            return "결석";
         }
         return "null";
     }

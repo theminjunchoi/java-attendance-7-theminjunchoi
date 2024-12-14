@@ -100,7 +100,27 @@ public class AttendanceController {
 
     private void executeCheck() {
         List<Crew> crews = attendRecords.organizeCrew();
+        int date = DateTimes.now().getDayOfMonth();
+        for (int i = 1; i < date; i++) {
+            for (Crew crew : crews) {
+                handleCrewInfo(crew, i);
+            }
+        }
+    }
 
+    private void handleCrewInfo(Crew crew, int date) {
+        // 해당 날에 크루의 출석 여부 찍어주기
+        LocalDate findDate = LocalDate.of(2024, 12, date);
+        if (attendRecords.isExist(crew.getName(), findDate)) {
+            AttendRecord record = attendRecords.findRecord(crew.getName(), findDate);
+            String recordStatus = record.checkStatus();
+            if (recordStatus.equals("지각")) {
+                crew.setLateCount(crew.getLateCount() + 1);
+            }
+            if (recordStatus.equals("지각")) {
+                crew.setNotCount(crew.getNotCount() + 1);
+            }
+        }
     }
 
 
