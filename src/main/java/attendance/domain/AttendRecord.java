@@ -1,14 +1,14 @@
 package attendance.domain;
 
-import camp.nextstep.edu.missionutils.DateTimes;
+import java.time.LocalDateTime;
 
 public class AttendRecord {
-    private final String name;
-    private final DateTimes dateTimes;
+    private final String crewName;
+    private final LocalDateTime dateTimes;
     private final Day day;
 
-    public AttendRecord(String name, DateTimes dateTimes) {
-        this.name = name;
+    public AttendRecord(String crewName, LocalDateTime dateTimes) {
+        this.crewName = crewName;
         this.dateTimes = dateTimes;
         this.day = null;
     }

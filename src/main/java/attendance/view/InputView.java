@@ -17,8 +17,8 @@ public class InputView {
     private static final String GET_ATTENDANCE_TIME = "등교 시간을 입력해 주세요.";
 
 
-    public MenuCommand readMenuCommand(int date, Day day) {
-        System.out.printf(GET_MENU_COMMAND, date, day.getDayName());
+    public MenuCommand readMenuCommand(int date, String day) {
+        System.out.printf(GET_MENU_COMMAND, date, day);
         try{
             return MenuCommand.fromInput(Console.readLine());
         } catch(IllegalArgumentException e){
