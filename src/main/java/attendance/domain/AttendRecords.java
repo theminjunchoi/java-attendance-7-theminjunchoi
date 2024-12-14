@@ -76,13 +76,22 @@ public class AttendRecords {
     }
 
     public void findAndChangeAttendanceInfo(String crewName, int changeDate, LocalTime changeTime) {
+        for (AttendRecord record : attendRecords) {
+            LocalDate date = LocalDate.of(20224, 12, changeDate);
+            LocalDateTime dateTime = LocalDateTime.of(date, changeTime);
+            record.setDateTime(dateTime);
+        }
+    }
 
+    public LocalTime findTime(String crewName, int changeDate) {
+        LocalTime time = null;
         for (AttendRecord record : attendRecords) {
             if (record.isExist(crewName, changeDate)) {
-                LocalDate date = LocalDate.of(20224, 12, changeDate);
-                LocalDateTime dateTime = LocalDateTime.of(date, changeTime);
-                record.setDateTime(dateTime);
+                int hour = record.getDateTime().getHour();
+                int minute = record.getDateTime().getHour();
+                time = LocalTime.of(hour, minute);
             }
         }
+        return time;
     }
 }

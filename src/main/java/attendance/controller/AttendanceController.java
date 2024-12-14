@@ -78,7 +78,9 @@ public class AttendanceController {
         String crewName = inputView.getExistName(attendRecords);
         int changeDate = inputView.getChangeDate();
         LocalTime changeTime = inputView.getAttendanceTime();
+        LocalTime originalTime = attendRecords.findTime(crewName, changeDate);
         attendRecords.findAndChangeAttendanceInfo(crewName, changeDate, changeTime);
+        outputView.printAdjustRecord(changeDate, originalTime, changeTime);
     }
 
     private void executeFind() {
